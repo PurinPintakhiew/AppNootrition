@@ -1,0 +1,52 @@
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+.py-4 {
+    padding-top: 0rem !important;
+}
+.backgrund-bar{
+    background-color: #c4e4ff;
+}
+ul {
+    list-style-type: none;
+}
+.btn.btn-outline-light{
+    color: black;
+    border-color: black;
+}
+.container-fluid.side{
+    padding-left: 0px;
+}
+.nav-link{
+    color: black;
+}
+.nav-link:hover{
+    color: rgb(252, 252, 254);
+    background-color: rgb(148, 148, 148);
+
+}
+.navbar-light .navbar-nav .nav-link{
+    border-radius: 5px;
+    background: #ffffff;
+    margin: 2px;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    background: azure;
+}
+.nav-tabs .nav-link{
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #0a0a0a;
+    background-color: rgb(202, 202, 202);
+}
+nav.navbar.navbar-expand-md.navbar-light.backgrund-bar.shadow-sm {
+    padding-bottom: 4px;
+    border-bottom-color: dimgrey;
+}
+input.form-control.me-2 {
+    width: 1100px;
+}
+
