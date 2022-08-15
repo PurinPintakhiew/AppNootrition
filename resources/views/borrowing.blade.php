@@ -1,15 +1,28 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
 @section('content')
 {{-- จัดการอุปกรณ์ --}}
+<style>
+    .nav-link{
+        color:#000000;
+    }
+    .nav-link:hover{
+        background-color:#000000;
+        color:#FFFFFF;
+    }
+    .nav-link:active{
+        background-color:#949393;
+        color:#000000;
+    }
+</style>
 <div class="container-fluid side">
     <nav class="nav nav-tabs" >
-        <a class="nav-link" href="{{route('home')}}">Home</a>
-        <a class="nav-link" href="{{route('employees.index')}}">Withdraw</a>
-        <a class="nav-link active" href="{{route('borrowing')}}">Borrowing</a>
-        <a class="nav-link" href="{{route('return')}}">Return</a>
+        <a class="nav-link" href="{{route('home')}}">หน้าแรก</a>
+        <a class="nav-link" href="{{route('employees.index')}}">จัดการพนักงาน</a>
+        <a class="nav-link active" href="{{ route('equipments.index') }}">จัดการอุปกรณ์</a>
+        <a class="nav-link" href="{{route('return')}}">คำร้อง</a>
     </nav>
 </div>
 <h1>borrowing</h1>
 
-@endsection
+@endsection -->

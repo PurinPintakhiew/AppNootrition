@@ -25,7 +25,17 @@
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dashboard.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/home.css?v=999') }}">
-
+    <style>
+        .dropdown-item:hover{
+            background-color :#AFAFAF;
+        }
+        .navbar{
+            background-color: #c4e4ff;
+        }
+        input.form-control{
+            width: 1100px;
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
@@ -61,13 +71,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark " href="{{ route('login') }}">{{ __('เข้าสู่ระบบ') }}</a>
+                                    <a class="nav-link text-dark rounded" href="{{ route('login') }}">{{ __('เข้าสู่ระบบ') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" href="{{ route('register') }}">{{ __('ลงทะเบียน') }}</a>
+                                    <a class="nav-link text-dark rounded" href="{{ route('register') }}">{{ __('ลงทะเบียน') }}</a>
                                 </li>
                             @endif
                         @else
@@ -76,7 +86,7 @@
                                     @csrf
                                     <input class="form-control me-2" type="search" placeholder="ค้นหาอุปกรณ์"
                                         aria-label="Search" id="search" ondragenter="search()">
-                                    <button class="btn btn-outline-light" type="submit" onclick="search()">ค้นหา</button>
+                                    <button class="btn btn-outline-dark" type="submit" onclick="search()">ค้นหา</button>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -86,7 +96,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-hover dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">
                                         {{ __('Setting') }}
                                     </a>

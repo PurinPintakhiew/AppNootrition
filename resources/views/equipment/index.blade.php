@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .nav-link{
+        color:#000000;
+    }
+    .nav-link:hover{
+        background-color:#000000;
+        color:#FFFFFF;
+    }
+    .nav-link:active{
+        background-color:#949393;
+        color:#000000;
+    }
+</style>
 <div class="container-fluid side">
     <nav class="nav nav-tabs">
         <a class="nav-link" href="{{ route('home') }}">หน้าแรก</a>
@@ -12,12 +25,12 @@
     <div class="container mt-3">
         <div class="text-end">
             <a href="{{ route('equipments.create') }}" class="btn btn-outline-primary">เพิ่มอุปกรณ์</a>
-            <a href="{{ route('categories.index') }}" class="btn btn-outline-warning">จัดการประเภท</a>
+            <a href="{{ route('categories.index') }}" class="btn btn-outline-primary">จัดการประเภท</a>
         </div>
         <div class="row">
             @foreach ($equipments as $equipment)
                 <div class="col-md-3 mb-2">
-                    <div class="card">
+                    <div class="card border border-dark">
                         <img src="{{ asset('image/1.jpg') }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $equipment->equipment_name }}</h5>
