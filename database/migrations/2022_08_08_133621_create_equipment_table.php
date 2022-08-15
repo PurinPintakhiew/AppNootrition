@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('equipment', function (Blueprint $table) {
             $table->id('equipment_id');
-            $table->string('equipment_name',15);
+            $table->string('equipment_name',50);
             $table->bigInteger('categories_id')->unsigned()->nullable();
-            $table->string('equipment_address',50);
+            $table->string('equipment_address');
             $table->date('buy_date');
             $table->integer('qty');
             $table->tinyInteger('stetus')->default(0);

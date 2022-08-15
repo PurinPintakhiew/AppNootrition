@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email',100);
             $table->bigInteger('department_id')->unsigned()->nullable();
             $table->string('telephone',10)->nullable();
-            $table->string('username',30);
+            $table->string('username',50);
             $table->string('password');
             $table->timestamps();
             $table->foreign('department_id')->references('department_id')->on('department')->cascadeOnDelete();
