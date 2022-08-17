@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
@@ -16,7 +17,8 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employee.create');
+        $departments = Department::query()->get();
+        return view('employee.create',compact('departments'));
     }
 
     public function store(Request $request)
@@ -48,7 +50,8 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::find($id);
-        return view('employee.edit',compact('employee'));
+        $departments = Department::query()->get();
+        return view('employee.edit',compact('employee','departments'));
     }
 
     public function update(Request $request,$id)

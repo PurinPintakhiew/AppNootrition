@@ -1,20 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .nav-link{
-        background-color:#000000;
-        color:#000000;
-    }
-    .nav-link:hover{
-        background-color:#000000;
-        color:#FFFFFF;
-    }
-    .nav-link:active{
-        background-color:#949393;
-        color:#000000;
-    }
-</style>
+    <style>
+        .nav-link {
+            background-color: #000000;
+            color: #000000;
+        }
+
+        .nav-link:hover {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        .nav-link:active {
+            background-color: #949393;
+            color: #000000;
+        }
+    </style>
     <div class="container-fluid side">
         <nav class="nav nav-tabs">
             <a class="nav-link" href="{{ route('home') }}">หน้าแรก</a>
@@ -25,7 +27,8 @@
     </div>
     <div class="container mt-5">
         <div class="text-end mb-2">
-            <a href="{{route('employees.create')}}"  class="btn btn-outline-primary">เพิ่มผู้ใช้</a>
+            <a href="{{ route('employees.create') }}" class="btn btn-outline-primary">เพิ่มผู้ใช้</a>
+            <a href="{{ route('departments.index') }}" class="btn btn-outline-primary">จัดการแผนก</a>
         </div>
         <table class="table table-hover ">
             <thead class="table-dark">
@@ -43,12 +46,19 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $employee->name }}</td>
-                        <td>{{ $employee->department_id }}</td>
+                        <td>
+                            @if ($employee->department_id != '')
+                                {{ $employee->department->department_name }}
+                            @else
+                                -
+                            @endif
+                        </td>
                         <td>{{ $employee->telephone }}</td>
                         <td>{{ $employee->email }}</td>
                         <td>
-                            <a class="btn btn-outline-info" href="{{ route('employees.edit', ['employee' => $employee->id]) }}">แก้ไข</a>
-                            <button class="btn btn-outline-danger" onclick="delEmployee({{$employee->id}})">ลบ</button>
+                            <a class="btn btn-outline-info"
+                                href="{{ route('employees.edit', ['employee' => $employee->id]) }}">แก้ไข</a>
+                            <button class="btn btn-outline-danger" onclick="delEmployee({{ $employee->id }})">ลบ</button>
                         </td>
                     </tr>
                 @endforeach

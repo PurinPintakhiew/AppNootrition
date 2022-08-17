@@ -17,7 +17,19 @@
                     <div class="form-group">
                         <label for="">แผนก</label>
                         <select type="text" name="department_id" class="form-select">
+                            @if ($employee->department_id != '')
                             <option value="">-</option>
+                            @foreach ($departments as $department)
+                                <option @if ($employee->department_id == $department->department_id) selected @endif
+                                    value="{{ $department->department_id }}">{{ $department->department_name }}</option>
+                            @endforeach
+                        @else
+                            <option value="">-</option>
+                            @foreach ($departments as $department)
+                                <option value="{{ $department->department_id }}">{{ $department->department_name }}</option>
+                            @endforeach
+                        @endif
+
                         </select>
                     </div>
                     <div class="form-group">

@@ -45,6 +45,6 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('eqsearch',[App\Http\Controllers\EquipmentController::class,'searchEQ'])->name('eq.search');
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
     Route::resource('employees', \App\Http\Controllers\EmployeeController::class);
-
+    Route::resource('departments', \App\Http\Controllers\DepartmentController::class);
 
 });

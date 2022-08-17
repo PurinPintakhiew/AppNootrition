@@ -17,6 +17,9 @@
                         <label for="">แผนก</label>
                         <select type="text" name="department_id" class="form-select">
                             <option value="">-</option>
+                            @foreach ($departments as $department )
+                                <option value="{{$department->department_id}}">{{$department->department_name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
