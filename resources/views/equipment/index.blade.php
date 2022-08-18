@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
+    <style>
 
-</style>
-<div class="container-fluid side">
-    <nav class="nav nav-tabs">
-        <a class="nav-link nav-link-color" href="{{ route('home') }}">หน้าแรก</a>
-        <a class="nav-link nav-link-color" href="{{ route('employees.index') }}">จัดการพนักงาน</a>
-        <a class="nav-link nav-link-color active"  href="{{ route('equipments.index') }}">จัดการอุปกรณ์</a>
-        <a class="nav-link nav-link-color" href="{{ route('return') }}">คำร้อง</a>
-        <a class="nav-link nav-link-color" href="{{ route('withdraws.index') }}">เบิกอุปกรณ์</a>
-    </nav>
-</div>
+    </style>
+    <div class="container-fluid side">
+        <nav class="nav nav-tabs">
+            <a class="nav-link nav-link-color" href="{{ route('home') }}">หน้าแรก</a>
+            <a class="nav-link nav-link-color" href="{{ route('employees.index') }}">จัดการพนักงาน</a>
+            <a class="nav-link nav-link-color active" href="{{ route('equipments.index') }}">จัดการอุปกรณ์</a>
+            <a class="nav-link nav-link-color" href="{{ route('return') }}">คำร้อง</a>
+            <a class="nav-link nav-link-color" href="{{ route('withdraws.index') }}">เบิกอุปกรณ์</a>
+        </nav>
+    </div>
     <div class="container mt-3">
         <div class="text-end">
             <a href="{{ route('equipments.create') }}" class="btn btn-outline-primary">เพิ่มอุปกรณ์</a>
@@ -31,10 +31,13 @@
                             <div class="card-text"><strong>สถานะ: </strong> {{ $equipment->stetus }}</div>
                             <div class="card-text"><strong>จำนวน: </strong> {{ $equipment->qty }}</div>
                             @if ($equipment->categories_id != '')
-                                <div class="card-text"><strong>ประเภท: </strong> {{ $equipment->category->categories_name }}
+                                <div class="card-text"><strong>ประเภท: </strong>
+                                    {{ $equipment->category->categories_name }}
                                 </div>
                             @endif
                             <div class="text-end">
+                                <button class="btn btn-outline-primary"
+                                    onclick="withdrawEQ({{ $equipment->equipment_id }})">เบิก</button>
                                 <a href="{{ route('equipments.show', ['equipment' => $equipment->equipment_id]) }}"
                                     class="btn btn-outline-success">ดู</a>
                                 <a href="{{ route('equipments.edit', ['equipment' => $equipment->equipment_id]) }}"
@@ -50,7 +53,6 @@
     </div>
     <script>
         function delEquipments(id) {
-
             $.ajax({
                 type: "DELETE",
                 url: "{{ url('equipments') }}/" + id,
@@ -65,6 +67,31 @@
                         } else if (response == "fail") {
                             alert('fail');
                         }
+                    }
+                }
+            });
+        }
+
+        function withdrawEQ(eqId) {
+            $.ajax({
+                type: "POST",
+                url: "/withdraws",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    equipment_id: eqId
+                },
+                success: (response) => {
+                    if (response.success) {
+                        alert(response.success);
+                        location.reload();
+                    }
+                    if (response.fail) {
+                        alert(response.fail);
+                    }
+                    if (response.null) {
+                        alert(response.null);
                     }
                 }
             });

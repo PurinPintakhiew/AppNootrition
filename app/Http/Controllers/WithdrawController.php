@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Withdraws;
+use App\Models\Equipment;
 
 class WithdrawController extends Controller
 {
@@ -14,7 +15,8 @@ class WithdrawController extends Controller
      */
     public function index()
     {
-        return view('withdraw.index');
+        $withdraws = Withdraws::query()->get();
+       return view('withdraw.index',compact('withdraws'));
     }
 
     /**
@@ -35,7 +37,34 @@ class WithdrawController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->equipment_id) {
+
+            $eq = Equipment::where('equipment_id', '=', $request->equipment_id)->first();
+
+            if (is_null($eq)) {
+                return response()->json(['null' => '❗️ไม่พบอุปกรณ์❗️']);
+            }
+
+            $withdraw = new Withdraws();
+            $withdraw->equipment_id = $eq->equipment_id;
+            $withdraw->equipment_name = $eq->equipment_name;
+            $withdraw->equipment_address = $eq->equipment_address;
+            $withdraw->user_id = $request->user()->id;
+            $withdraw->date = date("Y-m-d H:i:s");
+            $withdraw->approve = 0;
+            $withdraw->stetus = 0;
+
+            if ($withdraw->save()) {
+                $cut_stock = Equipment::where('equipment_id', '=', $request->equipment_id)
+                    ->update(['qty' => $eq->qty - 1]);
+
+                return response()->json(['success' => 'เบิกสำเร็จ']);
+            }
+
+            return response()->json(['error' => 'เบิกไม่สำเร็จ']);
+        }
+
+        return response()->json(['fail' => 'ส่ง id มาสิ 🖕']);
     }
 
     /**
@@ -80,6 +109,13 @@ class WithdrawController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $withdraw = Withdraws::where('withdraw_id','=',$id)->delete();
+
+       if($withdraw > 0){
+            return 'success';
+       }
+
+       return "fail";
+
     }
 }

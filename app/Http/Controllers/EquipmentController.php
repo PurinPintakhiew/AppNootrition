@@ -59,7 +59,7 @@ class EquipmentController extends Controller
         }
 
         if($equipment->save()){
-            return redirect()->route('home');
+            return redirect()->route('equipments.index');
         }
 
         return redirect()->refresh();
@@ -130,7 +130,7 @@ class EquipmentController extends Controller
         }
 
         if($equipment > 0){
-            return redirect()->route('home');
+            return redirect()->route('equipments.index');
         }
 
         return redirect()->refresh();
