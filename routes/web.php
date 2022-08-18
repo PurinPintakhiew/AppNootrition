@@ -46,5 +46,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
     Route::resource('employees', \App\Http\Controllers\EmployeeController::class);
     Route::resource('departments', \App\Http\Controllers\DepartmentController::class);
+    Route::resource('withdraws', \App\Http\Controllers\WithdrawController::class);
 
 });

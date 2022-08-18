@@ -20,6 +20,7 @@
         <a class="nav-link" href="{{ route('employees.index') }}">จัดการพนักงาน</a>
         <a class="nav-link active"  href="{{ route('equipments.index') }}">จัดการอุปกรณ์</a>
         <a class="nav-link" href="{{ route('return') }}">คำร้อง</a>
+        <a class="nav-link" href="{{ route('withdraws.index') }}">เบิกอุปกรณ์</a>
     </nav>
 </div>
     <div class="container mt-3">
