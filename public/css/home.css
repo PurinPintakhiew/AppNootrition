@@ -8,10 +8,6 @@ body {
 ul {
     list-style-type: none;
 }
-.container-fluid.side{
-    padding-left: 0px;
-}
-input.form-control.me-2 {
-    width: 1100px;
-}
+
+
 

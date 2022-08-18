@@ -32,8 +32,16 @@
         .navbar{
             background-color: #c4e4ff;
         }
-        input.form-control{
-            width: 1100px;
+        .nav-link-color{
+        color:#000000;
+        }
+        .nav-link-color:hover{
+            background-color:#000000;
+            color:#FFFFFF;
+        }
+        .nav-link-color:active{
+            background-color:#949393;
+            color:#000000;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -89,7 +97,7 @@
                                     <button class="btn btn-outline-dark" type="submit" onclick="search()">ค้นหา</button>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown ">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i i class="fa fa-user fa-lg mr-2"></i>
@@ -138,7 +146,6 @@
                 search();
             }
         });
-
     </script>
 </body>
 
