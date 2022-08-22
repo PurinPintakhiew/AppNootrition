@@ -33,6 +33,7 @@
                                 </div>
                             @endif
                             <div class="text-end">
+                                <a class="btn btn-outline-primary" href="{{route('borrowings.create',['id'=>$equipment->equipment_id])}}">ยืม</a>
                                 <button class="btn btn-outline-primary"
                                     onclick="withdrawEQ({{ $equipment->equipment_id }})">เบิก</button>
                                 <a href="{{ route('equipments.show', ['equipment' => $equipment->equipment_id]) }}"

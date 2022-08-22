@@ -17,7 +17,7 @@ class BorrowingController extends Controller
     public function index()
     {
         $borrowings = Borrowings::query()->get();
-        return view('Borrowing.index',compact('borrowings'));
+        return view('Borrowing.index', compact('borrowings'));
     }
 
     /**
@@ -25,10 +25,10 @@ class BorrowingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $equipments = Equipment::query()->get();
-        return view('borrowing.create',compact('equipments'));
+        $equipments = Equipment::where('equipment_id', '=', $request->id)->first();
+        return view('borrowing.create', compact('equipments'));
     }
 
     /**
@@ -39,30 +39,28 @@ class BorrowingController extends Controller
      */
     public function store(Request $request)
     {
-        
 
-            $borrowing = new Borrowings();
-            $borrowing->equipment_name = $request->equipment_name;
-            $borrowing->user_id = $request->user()->id;
-            $borrowing->borrow_date = date("Y-m-d H:i:s");
-            $borrowing->remand_date = date("Y-m-d H:i:s");
-            $borrowing->approve = 0;
-            $borrowing->stetus = 0;
+        $validated = $request->validate([
+            'equipment_id' => 'required',
+            'equipment_name' => 'required',
+            'borrow_date' => 'required',
+            'remand_date' => 'required',
+        ]);
 
-        
-            if ($withdraw->save()) {
-                $cut_stock = Equipment::where('equipment_id', '=', $request->equipment_id)
-                    ->update(['qty' => $eq->qty - 1]);
+        $borrowing = new Borrowings();
+        $borrowing->equipment_id = $request->equipment_id;
+        $borrowing->equipment_name = $request->equipment_name;
+        $borrowing->user_id = $request->user()->id;
+        $borrowing->borrow_date = $request->borrow_date;
+        $borrowing->remand_date = $request->remand_date;
+        $borrowing->approve = 0;
+        $borrowing->stetus = 0;
 
-                return response()->json(['success' => 'ยืมสำเร็จ']);
-            }
+        if($borrowing->save()){
+            return redirect()->route('borrowings.index');
+        }
 
-            return response()->json(['error' => 'ยืมไม่สำเร็จ']);
-            if($equipment->save()){
-                return redirect()->route('equipments.index');
-            }
-    
-            return redirect()->refresh();
+        return redirect()->refresh();
     }
 
     /**
@@ -73,7 +71,6 @@ class BorrowingController extends Controller
      */
     public function show($id)
     {
-        
     }
     /**
      * Show the form for editing the specified resource.
@@ -83,7 +80,8 @@ class BorrowingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bw = Borrowings::where('borrow_id','=',$id)->first();
+        return view('borrowing.edit',compact('bw'));
     }
 
     /**
@@ -95,7 +93,28 @@ class BorrowingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'equipment_id' => 'required',
+            'equipment_name' => 'required',
+            'borrow_date' => 'required',
+            'remand_date' => 'required',
+        ]);
+
+        $bw = Borrowings::where('borrow_id','=',$id)->update([
+            'equipment_id' => $request->equipment_id,
+            'equipment_name' => $request->equipment_name,
+            'borrow_date' => $request->borrow_date,
+            'remand_date' => $request->remand_date,
+            'user_id' => $request->user()->id,
+            'approve' => $request->approve,
+            'stetus' => $request->stetus,
+        ]);
+
+        if($bw > 0){
+            return redirect()->route('borrowings.index');
+        }
+
+        return redirect()->refresh();
     }
 
     /**
@@ -106,6 +125,12 @@ class BorrowingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bw = Borrowings::where('borrow_id','=',$id)->delete();
+
+        if($bw > 0){
+             return 'success';
+        }
+
+        return "fail";
     }
 }

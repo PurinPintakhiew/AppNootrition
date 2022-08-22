@@ -27,6 +27,7 @@
                         </td>
                         <td>{{ $equipment->stetus }}</td>
                         <td>
+                            <a class="btn btn-outline-primary" href="{{route('borrowings.create',['id'=>$equipment->equipment_id])}}">ยืม</a>
                             <a href="{{ route('equipments.show', ['equipment' => $equipment->equipment_id]) }}"
                                 class="btn btn-outline-success">ดู</a>
                             <a href="{{ route('equipments.edit', ['equipment' => $equipment->equipment_id]) }}"
