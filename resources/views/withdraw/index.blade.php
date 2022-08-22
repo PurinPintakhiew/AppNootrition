@@ -6,8 +6,8 @@
             <a class="nav-link nav-link-color" href="{{ route('home') }}">หน้าแรก</a>
             <a class="nav-link nav-link-color" href="{{ route('employees.index') }}">จัดการพนักงาน</a>
             <a class="nav-link nav-link-color" href="{{ route('equipments.index') }}">จัดการอุปกรณ์</a>
-            <a class="nav-link nav-link-color" href="#">คำร้อง</a>
             <a class="nav-link nav-link-color active" href="{{ route('withdraws.index') }}">เบิกอุปกรณ์</a>
+            <a class="nav-link nav-link-color" href="{{ route('borrowings.index') }}">ยืมอุปกรณ์</a>
         </nav>
     </div>
 
@@ -17,7 +17,7 @@
         </div>
         <table class="table table-striped table-hover">
             <thead>
-                <th>#</th>
+                <th>ลำดับ</th>
                 <th>อุปกรณ์</th>
                 <th>ผู้เบิก</th>
                 <th>เวลา</th>

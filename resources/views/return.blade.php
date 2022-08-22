@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
 @section('content')
 {{-- คำร้อง --}}
@@ -15,4 +15,4 @@
 </div>
 <h1>return</h1>
 
-@endsection
+@endsection -->
