@@ -8,11 +8,7 @@ use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $equipments = Equipment::query()->get();
@@ -30,12 +26,7 @@ class EquipmentController extends Controller
         return view('equipment.create',compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
 
@@ -65,12 +56,7 @@ class EquipmentController extends Controller
         return redirect()->refresh();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $equipment = Equipment::where('equipment_id','=',$id)->first();
@@ -84,12 +70,7 @@ class EquipmentController extends Controller
         return view('equipment.search',compact('equipments'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $equipment = Equipment::where('equipment_id','=',$id)->first();
@@ -97,13 +78,7 @@ class EquipmentController extends Controller
         return view('equipment.edit',compact('equipment','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
 
@@ -136,12 +111,6 @@ class EquipmentController extends Controller
         return redirect()->refresh();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
        $equipment = Equipment::where('equipment_id','=',$id)->delete();
