@@ -70,6 +70,45 @@ class EquipmentController extends Controller
         return view('equipment.search',compact('equipments'));
     }
 
+    public function search(Request $request){
+        $data = [];
+        $name = $request->name;
+        $address = $request->address;
+        $categories = $request->category;
+
+        if($name && $address && $categories){
+            $data = Equipment::where([
+                ['equipment_name','LIKE',"%{$name}%"],
+                ['equipment_address','LIKE',"%{$address}%"],
+                ['categories_id','=',$categories],
+            ])->get();
+            return $data;
+        }
+
+        if($name){
+            $data = Equipment::where([
+                ['equipment_name','LIKE',"%{$name}%"],
+            ])->get();
+            return $data;
+        }
+
+        if($address){
+            $data = Equipment::where([
+                ['equipment_address','LIKE',"%{$address}%"],
+            ])->get();
+            return $data;
+        }
+
+        if($categories){
+            $data = Equipment::where([
+                ['categories_id','=',$categories],
+            ])->get();
+            return $data;
+        }
+
+        return $data;
+    }
+
 
     public function edit($id)
     {

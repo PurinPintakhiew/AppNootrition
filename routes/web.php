@@ -49,4 +49,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('withdraws', \App\Http\Controllers\WithdrawController::class);
     Route::resource('borrowings', \App\Http\Controllers\BorrowingController::class);
 
+    Route::post('search' ,[App\Http\Controllers\EquipmentController::class,'search'])->name('search');
+
 });

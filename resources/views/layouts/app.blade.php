@@ -89,6 +89,17 @@
                                 </li>
                             @endif
                         @else
+                            {{-- <li class="nav-item ">
+                                <div class="me-2 d-flex">
+                                    <form action="{{route('search')}}" method="post">
+                                        @csrf
+                                        <input type="text" name="name">
+                                        <input type="text" name="address">
+                                        <input type="text" name="category">
+                                        <button type="submit">search</button>
+                                    </form>
+                                </div>
+                            </li> --}}
                             <li class="nav-item ">
                                 <div class="me-2 d-flex">
                                     @csrf
@@ -124,7 +135,7 @@
                 </div>
             </div>
         </nav>
-        
+
         <main class="py-4">
             @yield('content')
         </main>
