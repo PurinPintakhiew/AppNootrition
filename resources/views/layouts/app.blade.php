@@ -89,7 +89,7 @@
                                 </li>
                             @endif
                         @else
-                            {{-- <li class="nav-item ">
+                            <li class="nav-item ">
                                 <div class="me-2 d-flex">
                                     <form action="{{route('search')}}" method="post">
                                         @csrf
@@ -99,7 +99,7 @@
                                         <button type="submit">search</button>
                                     </form>
                                 </div>
-                            </li> --}}
+                            </li>
                             <li class="nav-item ">
                                 <div class="me-2 d-flex">
                                     @csrf
