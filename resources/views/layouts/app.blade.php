@@ -53,7 +53,7 @@
         <nav class="navbar navbar-expand-md navbar-light backgrund-bar shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <img width="170" height="45" class="d-inline-block align-text-top"
+                    <img width="170" height="50" class="d-inline-block align-text-top"
                         src="{{ asset('image/logo.png') }}" alt="Logo">
                 </a>
                 <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
