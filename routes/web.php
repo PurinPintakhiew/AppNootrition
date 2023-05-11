@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/return', [App\Http\Controllers\HomeController::class, 'return'])->name('return');
 
     Route::resource('equipments', \App\Http\Controllers\EquipmentController::class);
-    Route::get('eqsearch/{name}',[App\Http\Controllers\EquipmentController::class,'searchEQ'])->name('eq.search');
+    Route::get('eqsearch/{name}', [App\Http\Controllers\EquipmentController::class, 'searchEQ'])->name('eq.search');
     // Route::get('eqsearch',[App\Http\Controllers\EquipmentController::class,'searchEQ'])->name('eq.search');
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
     Route::resource('employees', \App\Http\Controllers\EmployeeController::class);
@@ -49,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('withdraws', \App\Http\Controllers\WithdrawController::class);
     Route::resource('borrowings', \App\Http\Controllers\BorrowingController::class);
 
-    Route::post('search' ,[App\Http\Controllers\EquipmentController::class,'search'])->name('search');
+    Route::post('search', [App\Http\Controllers\EquipmentController::class, 'search'])->name('search');
+});
 
+Route::get('/test', function () {
+    $departments = [(object)['department_id' => 1, 'department_name' => 'acer']];
+    return view('test', compact('departments'));
 });

@@ -65,6 +65,7 @@ class EquipmentController extends Controller
 
     public function searchEQ($name)
     {
+        dd($name);
         $equipments = Equipment::where([
             ['equipment_name', 'LIKE', "%{$name}%"],
         ])->get();
